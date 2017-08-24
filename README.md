@@ -2,6 +2,9 @@
 This is a CTF test page showing part of the OverTheWire wargame for Bandit
 ### Bandit - Over The Wire
 
+![ctf bandit1](https://user-images.githubusercontent.com/31230311/29692047-0d87b38a-88fc-11e7-9f6c-3f2a089a0254.png)
+![ctf bandit2](https://user-images.githubusercontent.com/31230311/29692098-4d175c80-88fc-11e7-9d98-a8cb2a05dfd4.png)
+![ctf bandit3](https://user-images.githubusercontent.com/31230311/29692125-7ce84df2-88fc-11e7-84ad-130f6426cd3f.png)
 
 
 ```markdown
@@ -27,6 +30,8 @@ cat readme
 #a code is given " boJ9jbbUNNfktd78OOpsqOltutMc3MY1 ", save code for next part of level
 ```
 
+![ctf bandit5](https://user-images.githubusercontent.com/31230311/29692200-d0611a2c-88fc-11e7-8124-a4317bd90973.png)
+![ctf bandit6](https://user-images.githubusercontent.com/31230311/29692227-ee0e678c-88fc-11e7-8997-565fc239bf28.png)
 
 
 ```markdown
@@ -56,7 +61,7 @@ cat < -
 #Now we need to log into Level 2
 ```
 
-
+![ctf bandit8](https://user-images.githubusercontent.com/31230311/29692276-2a89113a-88fd-11e7-9adc-9ad0c11f6d72.png)
 
 
 ```markdown
@@ -70,7 +75,7 @@ CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 
 #Next we got to find the directory that holds the next password. 
 #Clue is "spaces in this filename" the "cat < spaces in this filename" will not work but typing in "cat spa " 
-#then tab button will work to find this folder within folder file 
+#then pressing the Tab button will work to find this folder within folders file 
 #because spaces is probably the only file that starts out with that exact name
 
 cat spaces\ in\ this\ filename
@@ -78,7 +83,9 @@ cat spaces\ in\ this\ filename
 #password gotten is " UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK "
 ```
 
-
+![ctf bandit9](https://user-images.githubusercontent.com/31230311/29692342-79349e12-88fd-11e7-8198-a0604a37ffd2.png)
+![ctf bandit10](https://user-images.githubusercontent.com/31230311/29692377-a42b3194-88fd-11e7-89a3-811f50218dc6.png)
+![ctf bandit11](https://user-images.githubusercontent.com/31230311/29692386-b69c9714-88fd-11e7-926a-695e37c7ba0e.png)
 
 
 ```markdown
@@ -146,7 +153,7 @@ cat ./-file07
 #It reveals a password inside " koReBOKuIDDepwhWk7jZC0RTdopnAYKh "
 ```
 
-
+![ctf bandit13](https://user-images.githubusercontent.com/31230311/29692419-e4673bea-88fd-11e7-85a3-9b31e754de68.png)
 
 
 ```markdown
@@ -185,7 +192,7 @@ find . -type f -size 1033c -exec cat {} \;
 #password gathered is " DXjZPULLxYr17uwoI01bNLQbtFemEgo7 "
 ```
 
-
+![ctf bandit14](https://user-images.githubusercontent.com/31230311/29692430-fa0ac142-88fd-11e7-9b4e-59238f143c32.png)
 
 
 ```markdown
@@ -210,7 +217,7 @@ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null -exec cat {} \;
 #The password shown is " HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs "
 ```
 
-
+![ctf bandit15](https://user-images.githubusercontent.com/31230311/29692442-08be56ae-88fe-11e7-9aec-fc87d9c54eaa.png)
 
 
 ```markdown
