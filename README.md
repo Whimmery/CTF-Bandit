@@ -2,6 +2,8 @@
 This is a CTF test page showing part of the OverTheWire wargame for Bandit
 ### Bandit - Over The Wire
 
+[Image]https://68.media.tumblr.com/d20cbde85816d9bdd263ba1bf80541ca/tumblr_ov7ne5wUap1wzoccuo5_1280.png[/Image]
+
 ```markdown
 #Level 0  - logging into bandit, using the specific port and username
 
@@ -69,15 +71,16 @@ CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
 cat spaces\ in\ this\ filename
 
 #password gotten is " UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK "
+```
+
+```markdown
+#Level 3 
+
 #Now we log into ssh bandit.labs.overthewire.org -p2220 -l bandit3
 
 ssh bandit.labs.overthewire.org -p2220 -l bandit3
 
 UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK
-```
-
-```markdown
-#Level 3 
 
 #Using ls can lead to finding "inhere" file, but "cat inhere" does not work in showing what is inside. 
 #Need to find the hidden file. 
