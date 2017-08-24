@@ -2,7 +2,7 @@
 This is a CTF test page showing part of the OverTheWire wargame for Bandit
 ### Bandit - Over The Wire
 
-[Image]https://68.media.tumblr.com/d20cbde85816d9bdd263ba1bf80541ca/tumblr_ov7ne5wUap1wzoccuo5_1280.png[Image]
+
 
 ```markdown
 #Level 0  - logging into bandit, using the specific port and username
@@ -26,6 +26,8 @@ cat readme
 
 #a code is given " boJ9jbbUNNfktd78OOpsqOltutMc3MY1 ", save code for next part of level
 ```
+
+
 
 ```markdown
 #Level 1
@@ -54,6 +56,9 @@ cat < -
 #Now we need to log into Level 2
 ```
 
+
+
+
 ```markdown
 #Level 2
 
@@ -72,6 +77,9 @@ cat spaces\ in\ this\ filename
 
 #password gotten is " UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK "
 ```
+
+
+
 
 ```markdown
 #Level 3 
@@ -100,6 +108,9 @@ cat .hidden
 
 #Password shows up in .hidden, password is " pIwrPrtPN36QITSp3EQaw936yaFoFgAB "
 ```
+
+
+
 
 ```markdown
 #Level 4
@@ -134,6 +145,9 @@ cat ./-file07
 
 #It reveals a password inside " koReBOKuIDDepwhWk7jZC0RTdopnAYKh "
 ```
+
+
+
 
 ```markdown
 #Level 5
@@ -171,6 +185,9 @@ find . -type f -size 1033c -exec cat {} \;
 #password gathered is " DXjZPULLxYr17uwoI01bNLQbtFemEgo7 "
 ```
 
+
+
+
 ```markdown
 #Level 6
 
@@ -192,6 +209,9 @@ find / -user bandit7 -group bandit6 -size 33c 2>/dev/null -exec cat {} \;
 
 #The password shown is " HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs "
 ```
+
+
+
 
 ```markdown
 #Level 7
