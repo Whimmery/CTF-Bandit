@@ -1,5 +1,5 @@
 ## Welcome to CTF
-These are the solutions to solve for OverTheWire Bandit Wargame Level 0-7
+This is my process to solving OverTheWire Bandit Wargame Levels 0-7
 ### Bandit - Over The Wire
 
 ![ctf bandit1](https://user-images.githubusercontent.com/31230311/29692047-0d87b38a-88fc-11e7-9f6c-3f2a089a0254.png)
