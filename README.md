@@ -84,8 +84,6 @@ cat spaces\ in\ this\ filename
 ```
 
 ![ctf bandit9](https://user-images.githubusercontent.com/31230311/29692342-79349e12-88fd-11e7-8198-a0604a37ffd2.png)
-![ctf bandit10](https://user-images.githubusercontent.com/31230311/29692377-a42b3194-88fd-11e7-89a3-811f50218dc6.png)
-![ctf bandit11](https://user-images.githubusercontent.com/31230311/29692386-b69c9714-88fd-11e7-926a-695e37c7ba0e.png)
 
 
 ```markdown
@@ -115,8 +113,9 @@ cat .hidden
 
 #Password shows up in .hidden, password is " pIwrPrtPN36QITSp3EQaw936yaFoFgAB "
 ```
+![ctf bandit10](https://user-images.githubusercontent.com/31230311/29692377-a42b3194-88fd-11e7-89a3-811f50218dc6.png)
 
-
+![ctf bandit11](https://user-images.githubusercontent.com/31230311/29692386-b69c9714-88fd-11e7-926a-695e37c7ba0e.png)
 
 
 ```markdown
