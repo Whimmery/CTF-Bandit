@@ -1,0 +1,24 @@
+#Level 1
+
+#need to log into level 1 so use the original ssh log in but change "bandit0" to "bandit1" 
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit1
+
+#type in code given in bandit0
+
+boJ9jbbUNNfktd78OOpsqOltutMc3MY1
+
+#Now that we are in, lets check home directory like last time to find the next password
+
+ls
+
+#only a dash is showing up so lets see if we can read the dash
+
+cat -
+
+#cat and just a dash does not work. Lets try to find the exact file that - is holding
+
+cat < -
+
+#The file holds the next password which is " CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9 "
+#Now we need to log into Level 2
