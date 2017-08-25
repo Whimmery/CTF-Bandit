@@ -1,0 +1,22 @@
+#Level 7
+
+#Log in and use password
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit7
+
+HKBPTKQnIay4Fw76bEy8PVxKEDQRKTzs
+
+#if using ls a file called data.txt appears. 
+
+ls
+
+#using cat data.txt led to a lare list of words and codes inside. none in order, 
+#but the word "millionth" should be in the txt file and next to it the password.
+
+cat data.txt
+
+#use grep millionth data.txt to find the word "millionth" without manually scrolling through the txt file.
+
+grep millionth data.txt
+
+#password found is " cvX2JJa4CFALtqS87jk27qwqGhBM9plV "
