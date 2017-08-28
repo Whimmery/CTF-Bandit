@@ -243,3 +243,183 @@ grep millionth data.txt
 
 #password found is " cvX2JJa4CFALtqS87jk27qwqGhBM9plV "
 ```
+
+![ctf bandit16](https://user-images.githubusercontent.com/31230311/29759018-2cfb014a-8b86-11e7-8935-fcf36cd4141d.png)
+
+```markdown
+#Level 8
+
+#Log into level 8 and use the password
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit8
+
+cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
+#just like level 7, use the cat data.txt to see what is in the data.txt file
+
+cat data.txt
+
+#there is no list, just everything is a mess.
+#the instructions says that there is only one line of text that occurs once
+#we can use a code to find that one text line
+# we can use sort data.txt | uniq -u
+
+sort data.txt | uniq -u
+
+#this gives us the next password
+#" UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR "
+```
+
+![ctf bandit17](https://user-images.githubusercontent.com/31230311/29759021-38d8e414-8b86-11e7-9624-3b6b015a5141.png)
+
+```markdown
+#Level 9
+
+#Log in and use password
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit9
+
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+#this file is unreadable except for some strings that have "=" in it. 
+#there is a way to use strings, but I will use grep
+#to use grep, you will need to use "-a" which can read text files
+#so the overall code would be " grep -a == data.txt "
+
+grep -a == data.txt
+
+#the password shows up a couple of times using "="
+#but only one that shows a line of text that could be readable
+# " truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk "
+```
+
+![ctf bandit17 2](https://user-images.githubusercontent.com/31230311/29759134-f4ac08c4-8b86-11e7-84a8-e3faef4faadc.png)
+
+```markdown
+#Level 10
+
+#Log in and put in the password
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit10
+
+truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk
+
+
+#Using cat data.txt you will get a long code which is something encoded
+
+cat data.txt
+
+#The encode will be 
+# " VGhlIHBhc3N3b3JkIGlzIElGdWt3S0dzRlc4TU9xM0lSRnFyeEUxaHhUTkViVVBSCg== "
+#The instructions say that this encode uses base64 which is a form of encryption
+#We need to decode the encryption using " base64 -d data.txt "
+
+base64 -d data.txt
+
+#It worked! The code decrypts to " IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR "
+```
+
+![ctf bandit18](https://user-images.githubusercontent.com/31230311/29759028-43cf69d8-8b86-11e7-9833-907bdc50818a.png)
+
+```markdown
+Level 11
+
+#Log in and use the password
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit11
+
+IFukwKGsFW8MOq3IRFqrxE1hxTNEbUPR
+
+#This requires a little bit of shifting letters in encryption
+#we have to shift the letters over by 13
+#best way to figure this out is ROT13 decoder
+#I used rot13.com to figure out the cat data.txt it gave
+
+cat data.txt
+
+#code is " Gur cnffjbeq vf 5Gr8L4qetPEsPk8htqjhRK8XSP6x2RHh "
+#rot13.com says that decoded it is
+#" The password is 5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu "
+```
+
+![ctf bandit19](https://user-images.githubusercontent.com/31230311/29759035-4ece8724-8b86-11e7-8951-66b0c6ddb0f9.png)
+
+```markdown
+#Level 12
+
+#log into the level and put the password in
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit12
+
+5Te8Y4drgCRfCx8ugdwuEX8KFC6k2EUu
+
+#cat data.txt is used to read the file and it shows many compressed files
+
+cat data.txt
+
+#the clues say we need to create a directory under /tmp and use mkdir
+#first I want to start a reverse file and put it into a bin file
+#I am naming the bin file, honeybee.bin though it can be called anything
+#this file can be used repeatedly as a source to revert the data.txt file
+#honeybee.bin will now serve as anything relating to data.txt info now
+
+xxd -r data.txt honeybee.bin
+
+#next we will use file to also work with honeybee.bin 
+#to find out what compression method was used on data.txt
+
+file honeybee.bin
+
+#we now find out gzip is how data.txt/honeybee.bin was compressed into a hexdump
+#we now need to find a way to decompress a gzip file
+#this method will use zcat and bcat to decompress
+#zcat will start off compressing and now we will
+#set up a way for " file - " to be linked to read honeybee.bin
+#as we start compressing and decompressing the multiple compressions
+#originally done to data.txt/honeybee.bin's hexdump
+#using " | " to keep linking more outputs for bzcat decompressions
+
+zcat honeybee.bin | file -
+
+#the output says bzip2 so we must now add bzcat to the extension list
+#to decompress
+
+
+zcat honeybee.bin | bzcat | file -
+
+#the output says gzip again which means that we must use zcat again
+#because the user compressed the original file with gzip again at this point
+
+zcat honeybee.bin | bzcat | zcat | file -
+
+#The output gives us a tar extension of the file locations compression
+#for multiple files that are more than 2 to be stored for extraction.
+#we will use tar and whatever other extensions zcat gives
+#so we can continue to decompress
+#we are going to put x0 for the number of times tar has been outputted
+#since we only see tar once, we will extract x0
+
+zcat honeybee.bin | bzcat | zcat | tar xO | file -
+
+#we see tar again so add it to the chain
+
+zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | file -
+
+#we see bzip2 again so need to add zcat to decompress
+
+zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | bzcat | tar xO | zcat | file -
+
+# we now see something called " ASCII text "
+#since we see text that must mean 
+#we have reached the honeybee.bin/data.txt to a readable file
+#we will now take out " | file - " so we can decompress this chaing
+#and read it without
+#linking anything else to the chain
+
+zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | bzcat | tar xO | zcat
+
+# the file decompresses and reads
+#The password is " 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL "
+```
