@@ -1,0 +1,19 @@
+#Level 9
+
+#Log in and use password
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit9
+
+UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR
+
+#this file is unreadable except for some strings that have "=" in it. 
+#there is a way to use strings, but I will use grep
+#to use grep, you will need to use "-a" which can read text files
+#so the overall code would be " grep -a == data.txt "
+
+grep -a == data.txt
+
+#the password shows up a couple of times using "="
+#but only one that shows a line of text that could be readable
+# " truKLdjsbJ5g7yyJ2X2R0o3a5HQJFuLk "
