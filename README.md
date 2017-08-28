@@ -414,7 +414,7 @@ zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | bzcat | tar xO | zcat | fil
 # we now see something called " ASCII text "
 #since we see text that must mean 
 #we have reached the honeybee.bin/data.txt to a readable file
-#we will now take out " | file - " so we can decompress this chaing
+#we will now take out " | file - " so we can decompress this chaining
 #and read it without
 #linking anything else to the chain
 
