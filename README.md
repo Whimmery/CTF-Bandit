@@ -1029,7 +1029,7 @@ v
 
 #That's it! We are finished!
 
-#A final not on bandit26
+#A final note on bandit26
 #if you have the password and the ssh, AND shrink the terminal size
 #you can easily log in with 
 #' ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220 '
