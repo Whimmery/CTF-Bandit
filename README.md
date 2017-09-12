@@ -660,7 +660,7 @@ diff passwords.new passwords.old
 
 #I'm going to assume the first one worked
 #because it logged in saying "Byebye !"
-#but closed because bandit18 has a block on ssh logings
+#but closed because bandit18 has a block on ssh logg ins
 ```
 
 ![ctf bandit lvl18](https://user-images.githubusercontent.com/31230311/30310178-261984c2-975d-11e7-915b-783b1c80f4e8.png)
