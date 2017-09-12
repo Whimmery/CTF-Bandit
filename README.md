@@ -424,6 +424,8 @@ zcat honeybee.bin | bzcat | zcat | tar xO | tar xO | bzcat | tar xO | zcat
 #The password is " 8ZjyCRiBWFYkneahHwxCv3wb2a1ORpYL "
 ```
 
+![ctf bandit lvl13](https://user-images.githubusercontent.com/31230311/30310122-e9bf1c58-975c-11e7-9980-b4d646004489.png)
+
 
 ```markdown
 #Level 13
@@ -467,6 +469,7 @@ ssh -i ./sskey.private bandit14@localhost
 #We're in.
 ```
 
+![ctf bandit lvl14](https://user-images.githubusercontent.com/31230311/30310137-f39ce430-975c-11e7-96e5-7a2ec90145ce.png)
 
 
 ```markdown
@@ -491,10 +494,12 @@ nc localhost 30000
 ```
 
 
+![ctf bandit lvl15](https://user-images.githubusercontent.com/31230311/30310149-fcf8b6bc-975c-11e7-9373-7c64fe19653a.png)
+
+
 
 ```markdown
 #Level 15
-
 
 
 ssh bandit.labs.overthewire.org -p2220 -l bandit15
@@ -524,6 +529,8 @@ BfMYroe26WYalil77FoDi9qh59eK5xNr
 
 #it gives password for next level cluFn7wTiGryunymYOu4RcffSxQluehd
 ```
+
+![ctf bandit lvl16](https://user-images.githubusercontent.com/31230311/30310156-09a90182-975d-11e7-8a16-3a232dd66cf9.png)
 
 
 ```markdown
@@ -626,7 +633,7 @@ chmod 600 /tmp/bandit17.key
 ssh bandit17@localhost -i /tmp/bandit17.key 
 ```
 
-
+![ctf bandit lvl17](https://user-images.githubusercontent.com/31230311/30310167-18e8f666-975d-11e7-8e75-eedd5175741b.png)
 
 
 ```markdown
@@ -656,8 +663,7 @@ diff passwords.new passwords.old
 #but closed because bandit18 has a block on ssh logings
 ```
 
-
-
+![ctf bandit lvl18](https://user-images.githubusercontent.com/31230311/30310178-261984c2-975d-11e7-915b-783b1c80f4e8.png)
 
 
 ```markdown
@@ -677,6 +683,7 @@ ssh bandit.labs.overthewire.org -p2220 -l bandit18 "cat readme"
 #password is ' IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x '
 ```
 
+![ctf bandit lvl19](https://user-images.githubusercontent.com/31230311/30310185-2f68ff94-975d-11e7-8bc3-5d7fa335fc12.png)
 
 
 ```markdown
@@ -705,6 +712,8 @@ ls -la
 #we get a password for next level ' GbKksEFF4yrVs6il55v6gwY5aVje5f0j '
 ```
 
+![ctf bandit lvl20](https://user-images.githubusercontent.com/31230311/30310197-3f6d1a9c-975d-11e7-84b7-d1a916477a56.png)
+
 
 
 ```markdown
@@ -727,6 +736,7 @@ echo "GbKksEFF4yrVs6il55v6gwY5aVje5f0j" | nc -l 1234 &
 #it gives us the password ' gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr '
 ```
 
+![ctf bandit lvl21](https://user-images.githubusercontent.com/31230311/30310207-4824444e-975d-11e7-84c4-0a49ec759726.png)
 
 
 ```markdown
@@ -764,7 +774,7 @@ cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
 #finally it gives us a password ' Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI '
 ```
 
-
+![ctf bandit lvl22](https://user-images.githubusercontent.com/31230311/30310214-51ee06b8-975d-11e7-8041-2277e195323c.png)
 
 
 ```markdown
@@ -810,6 +820,7 @@ cat /tmp/8ca319486bfbbc3663ea0fbe81326349
 #lets see if we can use it for the next level
 ```
 
+![ctf bandit lvl23](https://user-images.githubusercontent.com/31230311/30310220-5b74b128-975d-11e7-81c4-ff6720e8ad5f.png)
 
 
 ```markdown
@@ -871,6 +882,8 @@ cat pass
 #password shows up ' UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ '
 ```
 
+
+![ctf bandit lvl24](https://user-images.githubusercontent.com/31230311/30310225-683e6aca-975d-11e7-9cc5-b401c8ab8bb0.png)
 
 
 
@@ -938,6 +951,9 @@ Exiting.
 # So the password is ' uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG '
 ```
 
+![ctf bandit lvl25](https://user-images.githubusercontent.com/31230311/30310235-73eedcc4-975d-11e7-8b66-9d9754148d65.png)
+
+
 
 ```markdown
 #Level 25
@@ -985,6 +1001,9 @@ v
 #and there is our password ' 5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z '
 #that was crazy
 ```
+
+
+![ctf bandit lvl26](https://user-images.githubusercontent.com/31230311/30310239-7cda5cd2-975d-11e7-9b66-b967b8ff4c79.png)
 
 
 
