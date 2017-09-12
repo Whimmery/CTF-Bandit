@@ -1,0 +1,17 @@
+#Level 20
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit20
+
+GbKksEFF4yrVs6il55v6gwY5aVje5f0j
+
+#when ls -la there is suconnect showing
+#this would normally require 2 terminals to make it work for a
+#listerner and a receiver but it will not work
+#instead make a listener and receiver in same terminal
+
+echo "GbKksEFF4yrVs6il55v6gwY5aVje5f0j" | nc -l 1234 &
+
+./suconnect 1234
+
+#it gives us the password ' gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr '

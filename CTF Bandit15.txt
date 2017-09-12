@@ -1,0 +1,30 @@
+#Level 15
+
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit15
+
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+
+#For this level we gotta know some openssl
+#using the reading material offered we can see which steps to take next
+# https://www.feistyduck.com/library/openssl-cookbook/online/ch-testing-with-openssl.html
+#using the connection to ssl code from the website
+#we can change the code given to feistyduck's website to instead 
+#the localhost similar to the last level but with 30001
+
+openssl s_client -connect localhost 30001
+
+#Seeing the code it will give some commands as well as saying no port definited
+#lets make try again and make the command more like a port
+#adding -quiet to take out alot of the output from the results
+
+openssl s_client -connect localhost:30001 - quiet
+
+#it will then ask for a password 
+#the password is the same for logging into level
+
+BfMYroe26WYalil77FoDi9qh59eK5xNr
+
+#it gives password for next level cluFn7wTiGryunymYOu4RcffSxQluehd

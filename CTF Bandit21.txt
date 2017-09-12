@@ -1,0 +1,32 @@
+#Level 21
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit21
+
+gE269g2h3mw3pwgrj0Ha9Uoqen1c9DGr
+
+
+#ls -la to take a look see
+
+ls -la
+
+#I got nothing to look at beside probably prevpass
+#the hints suggest looking for cron.d so let's cd into it
+
+cd /etc/cron.d/
+
+#let's cat into it
+
+cat cronjob_bandit22
+
+#it gives us /usr/bin/cronjob_bandit22.sh
+#let's cat that
+
+cat /usr/bin/cronjob_bandit22.sh
+
+#it gives us another file /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+#let's cat again
+
+cat /tmp/t7O6lds9S0RqQh9aMcz6ShpAoZKF7fgv
+
+#finally it gives us a password ' Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI '

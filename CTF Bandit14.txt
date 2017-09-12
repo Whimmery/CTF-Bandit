@@ -1,0 +1,18 @@
+#Level 14
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit14
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+#We do not need to log in or use a password since we already logged in
+#now we need to know the password for the next level
+#this level is saying we need to use port 30000 for localhost
+#we can netcat or nc to access it
+
+nc localhost 30000
+
+#we need a password which should be the same password for this lab
+
+4wcYUJFw0k0XLShlDzztnTBHiqxU3b3e
+
+#we receive a password ' BfMYroe26WYalil77FoDi9qh59eK5xNr '

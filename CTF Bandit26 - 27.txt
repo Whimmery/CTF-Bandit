@@ -1,0 +1,31 @@
+
+#Level 26 - 27
+
+
+
+#now let's log into bandit 27 with the password
+#heh. there is no lvl 27
+#but if you stick around in bandit26 and type :shell
+#you will eventually find the real bandit26 insides and there is a readme
+#the read me congratulates you and says
+
+#Congratulations on solving the last level of this game!
+
+#At this moment, there are no more levels to play in this game. However, we #are constantly working
+#on new levels and will most likely expand this game with more levels soon.
+#Keep an eye out for an announcement on our usual communication channels!
+#In the meantime, you could play some of our other wargames.
+
+#If you have an idea for an awesome new level, please let us know!
+
+#That's it! We are finished!
+
+#A final not on bandit26
+#if you have the password and the ssh, AND shrink the terminal size
+#you can easily log in with 
+#' ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220 '
+# pw: 5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z
+#and not have to do anything extra to get easier access to the vim
+#after pressing " v "
+#they may fix this in the future but this is the easiest way
+#to access bandit26

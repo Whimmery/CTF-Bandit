@@ -1,0 +1,44 @@
+#Level 25
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit25
+
+uNG9O58gUE7snukf3bvZ0rxhtnjzSGzG
+
+#if we ls or ls -la we will see a sshkey saying "bandit26.sshkey "
+#let's use it to log in. Weeeee
+
+ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220
+
+#When to log in, it automatically logs you out. Fun times.
+#maybe we can just cat it before kicking us out
+#when we are kicked out, we are sent back to user bandit25
+#lets cat /etc/pssqd | grep bandit26
+
+cat /etc/passwd | grep bandit26
+
+#it will show a file saying /usr/bin/showtext
+#let's cat it
+
+cat /usr/bin/showtext
+
+#it says it wants to show more text
+#we can manually shrink the size of the terminal to as small as we can get it
+#then log in using the we tried earlier
+
+ssh -i ./bandit26.sshkey bandit26@bandit.labs.overthewire.org -p2220
+
+#it will now let us in but we need to make a vim
+#press v
+
+v
+
+#takes us into vim shell type in
+
+
+#type :r (to run console) and then /etc/bandit_pass/bandit26 to get the level 26 password
+
+:r /etc/bandit_pass/bandit26
+
+#and there is our password ' 5czgV9L3Xx8JPOyRbXh6lQbmIOWvPT6Z '
+#that was crazy

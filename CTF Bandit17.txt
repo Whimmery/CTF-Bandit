@@ -1,0 +1,24 @@
+#Level 17
+
+#using the ssh code we did from previous level
+#with the private key attached
+#allowed us to enter the next level 
+#without needing to type in another password
+
+ls -la
+
+#ls -la we see there is passwords.new and passwords.old
+#the instructions has a new command suggestion on using diff 
+#so lets try diff for both of them
+
+diff passwords.new passwords.old 
+
+#This gives 2 passwords
+# kfBf3eYk5BPBRzwjqutbbfE887SVc5Yd
+#and
+# eG69HnVwO1p7cOdfhadHkPv8Vn0ChedC
+#Let's test them for the next lesson to see which works
+
+#I'm going to assume the first one worked
+#because it logged in saying "Byebye !"
+#but closed because bandit18 has a block on ssh logg ins
