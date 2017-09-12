@@ -1,0 +1,23 @@
+#Level 19
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit19
+
+IueksS7Ubh8G3DCwVzrTd8rAVOwq3M5x
+
+#ls -la will show a file called bandit20-do
+
+ls -la
+
+#can't use cat
+#trying to use ./bandit20-do asks for an id
+#so lets see what happens if we add the hint of /etc/bandit_pass
+
+./bandit20-do cat /etc/bandit_pass
+
+#not working so far but bandit_pass needs to aim for 19 or 20
+#/etc/bandit_pass/bandit20 works 
+
+./bandit20-do cat /etc/bandit_pass/bandit20
+
+#we get a password for next level ' GbKksEFF4yrVs6il55v6gwY5aVje5f0j '

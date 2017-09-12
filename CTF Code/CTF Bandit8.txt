@@ -1,0 +1,23 @@
+#Level 8
+
+#Log into level 8 and use the password
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit8
+
+cvX2JJa4CFALtqS87jk27qwqGhBM9plV
+
+#just like level 7, use the cat data.txt to see what is in the data.txt file
+
+cat data.txt
+
+#there is no list, just everything is a mess.
+#the instructions says that there is only one line of text that occurs once
+#we can use a code to find that one text line
+# we can use sort data.txt | uniq -u
+
+sort data.txt | uniq -u
+
+#this gives us the next password
+#" UsvVyFSfZZWbi6wgC7dAFyFuR6jQQUhR "
+
+#password found is " cvX2JJa4CFALtqS87jk27qwqGhBM9plV "

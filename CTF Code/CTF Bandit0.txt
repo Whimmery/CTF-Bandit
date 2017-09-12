@@ -1,0 +1,11 @@
+#Level 0  
+
+#logging into bandit, using the specific port and username
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit0
+
+#Currently bandit0 has an error where it will not accept the password on first try
+#Solution to password failing is to on purpose write a wrong password (I wrote "bandit()" then on second request type in the right password "bandit0"
+
+bandit()
+bandit0

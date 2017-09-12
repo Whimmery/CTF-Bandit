@@ -1,0 +1,40 @@
+#Level 22
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit22
+
+Yk7owGAcWjwMVRwrTesJEwB7WVOiILLI
+
+#following last lab, cd into cron.d and cat
+
+cd /etc/cron.d/
+
+#lets ls -la to see what's here
+
+ls -la
+
+#I see a folder for cronjob_bandit23
+#let's cat it
+
+cat cronjob_bandit23
+
+#cat gave us a user link to follow
+#let's cat it too!
+
+cat /usr/bin/cronjob_bandit23.sh
+
+#its gives us some instructions to echo copy and how to type it up
+#on the line
+# ( echo I am user $(whoami) | md5sum | cut -d ' ' -f 1 )
+#edit whoami to 'bandit23'
+
+echo I am user bandit23 | md5sum | cut -d ' ' -f 1
+
+#it gave us a password ' 8ca319486bfbbc3663ea0fbe81326349 ' 
+#we should use it for the tmp/mytarget it was suggesting 
+#lets cat that tmp file
+
+cat /tmp/8ca319486bfbbc3663ea0fbe81326349
+
+#we got a password ' jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n '
+#lets see if we can use it for the next level

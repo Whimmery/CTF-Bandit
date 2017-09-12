@@ -1,0 +1,16 @@
+#Level 2
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit2
+
+#Next we will use the password given to us " CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9 "
+
+CV1DtqXWVFXTvM2F0k09SHz0YwRINYA9
+
+#Next we got to find the directory that holds the next password. 
+#Clue is "spaces in this filename" the "cat < spaces in this filename" will not work but typing in "cat spa " 
+#then pressing the Tab button will work to find this folder within folders file 
+#because spaces is probably the only file that starts out with that exact name
+
+cat spaces\ in\ this\ filename
+
+#password gotten is " UmHadQclWmgdLOKQ3YNgjWxGoRMb5luK "

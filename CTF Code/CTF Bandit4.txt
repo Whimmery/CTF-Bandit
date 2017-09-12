@@ -1,0 +1,31 @@
+#Level 4
+
+# logging into ssh bandit.labs.overthewire.org -p2220 -l bandit4
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit4
+
+#Enter password " pIwrPrtPN36QITSp3EQaw936yaFoFgAB "
+
+pIwrPrtPN36QITSp3EQaw936yaFoFgAB
+
+#looks at files and find inhere
+
+ls
+
+#next we need to see what is inside inhere
+
+cd inhere
+
+ls
+
+#a bunch of files will appear, but typing in there names will not reveal anything if using cat
+#best way to look through the files is to type " ./* " to search through them, 
+#doing so shows that one file is different than the others and has text
+
+./*
+
+#next lets use ./ with the cat and the file name to read it 
+
+cat ./-file07
+
+#It reveals a password inside " koReBOKuIDDepwhWk7jZC0RTdopnAYKh "

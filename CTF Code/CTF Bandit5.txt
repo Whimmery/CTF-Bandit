@@ -1,0 +1,33 @@
+#Level 5
+
+#Let's Log in and put the password into lvl 5
+
+ssh bandit.labs.overthewire.org -p2220 -l bandit5
+
+koReBOKuIDDepwhWk7jZC0RTdopnAYKh
+
+#Lets look at whats in the directory
+
+ls
+
+#inhere is still present so let's cd it
+
+cd inhere
+
+#lets see whats inside inhere
+
+ls
+
+#alot of files labelled as " maybehere " but using ./* does not work. using find ./* 
+#shows the files but only some have different aspects to them but we do not see what meets the requirement of this level.
+#to run a specific search on the requirements of this level, 
+#which is "human-readable, 1033 bytes in size, not executable," we need to run a specific search
+#multiple ways to look for the right file with those properties. 
+#Most of the files are readable text but only one has 1033c. 
+#You can use a code to find the 1033c either by "find -size 1033" 
+#or you can look up the exact properties and include cat to read that file at the end 
+#using " find . -type f -size 1033c -exec cat {} \;"
+
+find . -type f -size 1033c -exec cat {} \;
+
+#password gathered is " DXjZPULLxYr17uwoI01bNLQbtFemEgo7 "
